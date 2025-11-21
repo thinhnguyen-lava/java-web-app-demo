@@ -170,12 +170,12 @@ C:\path\to\tomcat\bin\shutdown.bat
 ```
 
 ## About Tomcat
-Installed via Homebrew:
+### Installed via Homebrew:
 - Tomcat Version: 11.0.14
 - Installation Path: /opt/homebrew/Cellar/tomcat/11.0.14/
 - Symlink Path: /opt/homebrew/opt/tomcat/
 
-Important Directories
+### Important Directories
 
 - Configuration files: /opt/homebrew/etc/tomcat/
 - Webapps folder (deploy your WAR files here): /opt/homebrew/opt/tomcat/libexec/webapps/
