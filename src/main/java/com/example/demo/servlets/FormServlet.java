@@ -64,6 +64,12 @@ public class FormServlet extends HttpServlet {
             // Retrieve color picker
             String favoriteColor = request.getParameter("favoriteColor");
 
+            // Retrieve hover menu selection
+            String framework = request.getParameter("framework");
+
+            // Retrieve signature data
+            String signatureData = request.getParameter("signatureData");
+
             // Retrieve terms checkbox
             String terms = request.getParameter("terms");
 
@@ -132,6 +138,11 @@ public class FormServlet extends HttpServlet {
             request.setAttribute("comments", comments != null && !comments.isEmpty() ? comments : "No comments provided");
 
             request.setAttribute("favoriteColor", favoriteColor);
+
+            request.setAttribute("framework", framework != null && !framework.isEmpty() ? framework : "Not selected");
+
+            request.setAttribute("signatureData", signatureData);
+            request.setAttribute("hasSignature", signatureData != null && !signatureData.isEmpty());
 
             // Forward to result page
             request.getRequestDispatcher("/result.jsp").forward(request, response);

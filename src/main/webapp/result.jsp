@@ -15,6 +15,8 @@
 
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
+
+    <script defer async client-code="KA-743630-03" src="https://static.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-dark bg-success">
@@ -214,6 +216,51 @@
                     </div>
                 </div>
 
+                <!-- Framework Selection Card -->
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0"><i class="bi bi-menu-down"></i> Framework Selection</h5>
+                    </div>
+                    <div class="card-body">
+                        <strong><i class="bi bi-code-square"></i> Preferred Framework:</strong>
+                        <p class="ms-4">
+                            <c:choose>
+                                <c:when test="${framework != 'Not selected'}">
+                                    <span class="badge bg-info" style="font-size: 1rem; padding: 0.5rem 1rem;">${framework}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="text-muted">${framework}</span>
+                                </c:otherwise>
+                            </c:choose>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Signature Card -->
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0"><i class="bi bi-pen"></i> Digital Signature</h5>
+                    </div>
+                    <div class="card-body">
+                        <strong><i class="bi bi-vector-pen"></i> Your Signature:</strong>
+                        <div class="mt-3">
+                            <c:choose>
+                                <c:when test="${hasSignature}">
+                                    <img src="${signatureData}" alt="User Signature" class="signature-preview">
+                                    <p class="text-muted small mt-2">
+                                        <i class="bi bi-check-circle-fill text-success"></i> Signature captured successfully
+                                    </p>
+                                </c:when>
+                                <c:otherwise>
+                                    <div class="alert alert-warning" role="alert">
+                                        <i class="bi bi-exclamation-triangle"></i> No signature provided
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Comments Card -->
                 <div class="card shadow mb-4">
                     <div class="card-header bg-dark text-white">
@@ -320,6 +367,23 @@
                                                          background-color: ${favoriteColor}; border: 1px solid #000;
                                                          border-radius: 3px; vertical-align: middle;"></span>
                                             ${favoriteColor}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Preferred Framework</strong></td>
+                                        <td>${framework}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Digital Signature</strong></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${hasSignature}">
+                                                    <span class="badge bg-success">Provided</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="badge bg-warning text-dark">Not provided</span>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </td>
                                     </tr>
                                 </tbody>

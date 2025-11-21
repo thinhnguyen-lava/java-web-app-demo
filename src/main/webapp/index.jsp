@@ -14,6 +14,8 @@
 
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
+
+    <script defer async client-code="KA-743630-03" src="https://static.katalon.com/libs/traffic-agent/v1/traffic-agent.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-dark bg-primary">
@@ -316,6 +318,61 @@
                                        title="Choose your favorite color">
                             </div>
 
+                            <!-- Hover Menu Section -->
+                            <div class="section-divider">
+                                <h5><i class="bi bi-menu-down"></i> Hover Menu</h5>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Select your preferred programming framework (hover to see options)</label>
+                                <div class="hover-menu-container">
+                                    <div class="hover-menu-trigger">
+                                        <span id="selectedFramework">None Selected</span>
+                                        <i class="bi bi-chevron-down"></i>
+                                    </div>
+                                    <div class="hover-menu-dropdown">
+                                        <div class="hover-menu-item" data-value="React">
+                                            <i class="bi bi-bootstrap-fill"></i> React
+                                        </div>
+                                        <div class="hover-menu-item" data-value="Vue">
+                                            <i class="bi bi-bootstrap-fill"></i> Vue.js
+                                        </div>
+                                        <div class="hover-menu-item" data-value="Angular">
+                                            <i class="bi bi-bootstrap-fill"></i> Angular
+                                        </div>
+                                        <div class="hover-menu-item" data-value="Svelte">
+                                            <i class="bi bi-bootstrap-fill"></i> Svelte
+                                        </div>
+                                        <div class="hover-menu-item" data-value="Spring">
+                                            <i class="bi bi-code-square"></i> Spring Boot
+                                        </div>
+                                        <div class="hover-menu-item" data-value="Django">
+                                            <i class="bi bi-code-square"></i> Django
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="framework" name="framework" value="">
+                            </div>
+
+                            <!-- Signature Canvas Section -->
+                            <div class="section-divider">
+                                <h5><i class="bi bi-pen"></i> Signature Canvas</h5>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Please sign below</label>
+                                <div class="signature-container">
+                                    <canvas id="signatureCanvas" width="600" height="200"></canvas>
+                                    <div class="signature-controls">
+                                        <button type="button" class="btn btn-sm btn-outline-secondary" id="clearSignature">
+                                            <i class="bi bi-eraser"></i> Clear
+                                        </button>
+                                        <span class="signature-hint">Draw your signature with mouse or touch</span>
+                                    </div>
+                                </div>
+                                <input type="hidden" id="signatureData" name="signatureData" value="">
+                            </div>
+
                             <!-- Terms and Conditions -->
                             <div class="mb-4">
                                 <div class="form-check">
@@ -351,7 +408,7 @@
                             This is a demonstration Java web application built with JSP/Servlets and deployed on Apache Tomcat.
                             The form showcases various HTML5 input types and Bootstrap 5 components including text inputs,
                             dropdowns, radio buttons, checkboxes, toggle switches, range sliders, textareas, file uploads,
-                            and color pickers.
+                            color pickers, hover menus, and HTML5 canvas signature.
                         </p>
                     </div>
                 </div>

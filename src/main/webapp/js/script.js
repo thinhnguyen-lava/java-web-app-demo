@@ -274,3 +274,157 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 console.log('%c Java Web App Demo ', 'background: #0d6efd; color: white; font-size: 16px; padding: 5px 10px; border-radius: 5px;');
 console.log('Built with JSP/Servlets and Bootstrap 5');
 console.log('For demo and educational purposes');
+
+// ============================================
+// Hover Menu Functionality
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hoverMenuItems = document.querySelectorAll('.hover-menu-item');
+    const selectedFramework = document.getElementById('selectedFramework');
+    const frameworkInput = document.getElementById('framework');
+
+    hoverMenuItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            const text = this.textContent.trim();
+
+            // Update the displayed text
+            selectedFramework.textContent = text;
+
+            // Update hidden input value
+            frameworkInput.value = value;
+
+            // Remove selected class from all items
+            hoverMenuItems.forEach(i => i.classList.remove('selected'));
+
+            // Add selected class to clicked item
+            this.classList.add('selected');
+
+            // Show toast notification
+            showToast(`Selected: ${text}`, 'success');
+        });
+    });
+});
+
+// ============================================
+// Signature Canvas Functionality
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const canvas = document.getElementById('signatureCanvas');
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    const clearButton = document.getElementById('clearSignature');
+    const signatureDataInput = document.getElementById('signatureData');
+
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+
+    // Set up canvas
+    function setupCanvas() {
+        // Get the actual display size
+        const rect = canvas.getBoundingClientRect();
+
+        // Set the actual canvas size (for retina displays)
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = rect.width * dpr;
+        canvas.height = rect.height * dpr;
+
+        // Scale the context to match the device pixel ratio
+        ctx.scale(dpr, dpr);
+
+        // Set drawing styles
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+    }
+
+    setupCanvas();
+
+    // Get coordinates relative to canvas
+    function getCoordinates(e) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+        return { x, y };
+    }
+
+    // Start drawing
+    function startDrawing(e) {
+        isDrawing = true;
+        const coords = getCoordinates(e);
+        lastX = coords.x;
+        lastY = coords.y;
+    }
+
+    // Draw
+    function draw(e) {
+        if (!isDrawing) return;
+
+        e.preventDefault();
+
+        const coords = getCoordinates(e);
+
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(coords.x, coords.y);
+        ctx.stroke();
+
+        lastX = coords.x;
+        lastY = coords.y;
+    }
+
+    // Stop drawing and save signature
+    function stopDrawing() {
+        if (isDrawing) {
+            isDrawing = false;
+            // Save the signature as base64
+            signatureDataInput.value = canvas.toDataURL('image/png');
+        }
+    }
+
+    // Clear signature
+    function clearSignature() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        signatureDataInput.value = '';
+        showToast('Signature cleared', 'info');
+    }
+
+    // Mouse events
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+
+    // Touch events for mobile
+    canvas.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        startDrawing(e);
+    });
+
+    canvas.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+        draw(e);
+    });
+
+    canvas.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        stopDrawing();
+    });
+
+    // Clear button
+    clearButton.addEventListener('click', clearSignature);
+
+    // Window resize handler
+    window.addEventListener('resize', function() {
+        // Save current signature
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        setupCanvas();
+        // Restore signature
+        ctx.putImageData(imageData, 0, 0);
+    });
+});
