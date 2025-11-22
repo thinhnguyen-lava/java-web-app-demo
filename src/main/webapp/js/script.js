@@ -12,6 +12,83 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Dependent Dropdown: Industry -> Job Role
+    const industryDropdown = document.getElementById('industry');
+    const jobRoleDropdown = document.getElementById('jobRole');
+
+    // Job roles mapped to industries
+    const jobRolesByIndustry = {
+        'Technology': [
+            'Software Developer',
+            'UX/UI Designer',
+            'DevOps Engineer',
+            'QA Engineer',
+            'Data Scientist',
+            'Product Manager'
+        ],
+        'Healthcare': [
+            'Doctor',
+            'Nurse',
+            'Pharmacist',
+            'Medical Technician',
+            'Healthcare Administrator',
+            'Surgeon'
+        ],
+        'Finance': [
+            'Financial Analyst',
+            'Accountant',
+            'Investment Banker',
+            'Auditor',
+            'Financial Advisor',
+            'Risk Manager'
+        ],
+        'Education': [
+            'Teacher',
+            'Professor',
+            'Academic Advisor',
+            'School Administrator',
+            'Curriculum Developer',
+            'Librarian'
+        ],
+        'Retail': [
+            'Store Manager',
+            'Sales Associate',
+            'Merchandiser',
+            'Customer Service Representative',
+            'Inventory Manager',
+            'Cashier'
+        ]
+    };
+
+    if (industryDropdown && jobRoleDropdown) {
+        industryDropdown.addEventListener('change', function() {
+            const selectedIndustry = this.value;
+
+            // Clear existing options
+            jobRoleDropdown.innerHTML = '<option value="">Select a job role</option>';
+
+            if (selectedIndustry && jobRolesByIndustry[selectedIndustry]) {
+                // Enable the job role dropdown
+                jobRoleDropdown.disabled = false;
+
+                // Populate with relevant job roles
+                jobRolesByIndustry[selectedIndustry].forEach(function(role) {
+                    const option = document.createElement('option');
+                    option.value = role;
+                    option.textContent = role;
+                    jobRoleDropdown.appendChild(option);
+                });
+
+                // Show success toast
+                showToast('Job roles updated for ' + selectedIndustry, 'success');
+            } else {
+                // Disable if no industry selected
+                jobRoleDropdown.disabled = true;
+                jobRoleDropdown.innerHTML = '<option value="">First select an industry</option>';
+            }
+        });
+    }
+
     // Form validation and submission handling
     const demoForm = document.getElementById('demoForm');
 

@@ -105,6 +105,14 @@
                                 <strong><i class="bi bi-briefcase"></i> Occupation:</strong>
                                 <p class="ms-4">${occupation}</p>
                             </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-building"></i> Industry:</strong>
+                                <p class="ms-4">${industry}</p>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <strong><i class="bi bi-person-badge"></i> Job Role:</strong>
+                                <p class="ms-4">${jobRole}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -324,6 +332,14 @@
                                     <tr>
                                         <td><strong>Occupation</strong></td>
                                         <td>${occupation}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Industry</strong></td>
+                                        <td>${industry}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Job Role</strong></td>
+                                        <td>${jobRole}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Gender</strong></td>

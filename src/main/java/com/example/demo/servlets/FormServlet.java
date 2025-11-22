@@ -35,6 +35,8 @@ public class FormServlet extends HttpServlet {
             // Retrieve dropdown selections
             String country = request.getParameter("country");
             String occupation = request.getParameter("occupation");
+            String industry = request.getParameter("industry");
+            String jobRole = request.getParameter("jobRole");
 
             // Retrieve radio button selections
             String gender = request.getParameter("gender");
@@ -122,6 +124,8 @@ public class FormServlet extends HttpServlet {
 
             request.setAttribute("country", country);
             request.setAttribute("occupation", occupation != null && !occupation.isEmpty() ? occupation : "Not selected");
+            request.setAttribute("industry", industry != null && !industry.isEmpty() ? industry : "Not selected");
+            request.setAttribute("jobRole", jobRole != null && !jobRole.isEmpty() ? jobRole : "Not selected");
 
             request.setAttribute("gender", gender);
             request.setAttribute("experience", experience != null ? experience : "Not selected");

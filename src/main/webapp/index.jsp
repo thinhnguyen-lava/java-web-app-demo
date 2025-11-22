@@ -120,6 +120,28 @@
                                 </div>
                             </div>
 
+                            <!-- Dependent Dropdowns -->
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="industry" class="form-label">Industry</label>
+                                    <select class="form-select" id="industry" name="industry">
+                                        <option value="" selected>Select an industry</option>
+                                        <option value="Technology">Technology</option>
+                                        <option value="Healthcare">Healthcare</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Retail">Retail</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="jobRole" class="form-label">Job Role</label>
+                                    <select class="form-select" id="jobRole" name="jobRole" disabled>
+                                        <option value="" selected>First select an industry</option>
+                                    </select>
+                                    <div class="form-text">This field depends on Industry selection</div>
+                                </div>
+                            </div>
+
                             <!-- Radio Buttons Section -->
                             <div class="section-divider">
                                 <h5><i class="bi bi-record-circle"></i> Radio Buttons</h5>
