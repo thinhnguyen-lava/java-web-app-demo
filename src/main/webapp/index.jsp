@@ -28,7 +28,7 @@
 
     <div class="container my-5">
         <div class="row">
-            <div class="col-lg-10 mx-auto">
+            <div class="col-lg-8">
                 <div class="card shadow">
                     <div class="card-header bg-primary text-white">
                         <h4 class="mb-0"><i class="bi bi-ui-checks"></i> UI Components Demo Form</h4>
@@ -410,6 +410,29 @@
                             dropdowns, radio buttons, checkboxes, toggle switches, range sliders, textareas, file uploads,
                             color pickers, hover menus, and HTML5 canvas signature.
                         </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column with iframes -->
+            <div class="col-lg-4">
+                <!-- About iframe -->
+                <div class="card shadow mb-4 iframe-card">
+                    <div class="card-header bg-info text-white">
+                        <h6 class="mb-0"><i class="bi bi-info-circle"></i> About</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <iframe src="about.jsp" class="responsive-iframe" title="About This Application"></iframe>
+                    </div>
+                </div>
+
+                <!-- Help iframe -->
+                <div class="card shadow iframe-card">
+                    <div class="card-header bg-warning text-dark">
+                        <h6 class="mb-0"><i class="bi bi-question-circle"></i> Help</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <iframe src="help.jsp" class="responsive-iframe" title="Form Help and Instructions"></iframe>
                     </div>
                 </div>
             </div>
