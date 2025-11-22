@@ -26,4 +26,17 @@
         <url-pattern>/submitForm</url-pattern>
     </servlet-mapping>
 
+    <!-- Script Injection Filter -->
+    <!-- <filter>
+        <filter-name>ScriptInjectionFilter</filter-name>
+        <filter-class>com.example.demo.filters.ScriptInjectionFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ScriptInjectionFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping> -->
+
 </web-app>
